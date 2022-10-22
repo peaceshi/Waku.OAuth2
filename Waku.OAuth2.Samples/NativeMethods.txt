@@ -1,0 +1,3 @@
+﻿FindWindow
+ShowWindow
+SetForegroundWindow
