@@ -4,11 +4,11 @@ using Microsoft.Win32;
 
 namespace Waku.OAuth2.Samples;
 
-public class CustomURI
+public class CustomUri
 {
     private const string HKCR = "HKEY_CLASSES_ROOT";
 
-    public CustomURI(string protocolSchemeName, string appName, string appWithExtensionName)
+    public CustomUri(string protocolSchemeName, string appName, string appWithExtensionName)
     {
         ProtocolKeyFullPath = $"{HKCR}\\{protocolSchemeName}";
         ProtocolKeyName = protocolSchemeName;

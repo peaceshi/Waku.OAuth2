@@ -12,18 +12,108 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Click="Button_Click">
-                Login
-            </Button>
-            <Button Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Click="UnRegister_Button_Click">
-                UnRegisterCustomURI
-            </Button>
-            <Button Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center"
-                    Click="Register_Button_Click">
-                RegisterCustomURI
-            </Button>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Client ID: " />
+                    <TextBox x:Name="GitHub_Client_ID" Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Client Secret: " />
+                    <PasswordBox x:Name="GitHub_Client_Secret" Grid.Column="1" />
+                </Grid>
+                <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Click="Button_Click_Login_GitHub">
+                    Login GitHub
+                </Button>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Code: " />
+                    <TextBox x:Name="GitHub_Code" Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="State: " />
+                    <TextBox x:Name="GitHub_State" Grid.Column="1" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Client ID: " />
+                    <TextBox x:Name="Gitee_Client_ID" Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Client Secret: " />
+                    <PasswordBox x:Name="Gitee_Client_Secret" Grid.Column="1" />
+                </Grid>
+                <Button Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Click="Button_Click_Login_Gitee">
+                    Login Gitee
+                </Button>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Code: " />
+                    <TextBox x:Name="Gitee_Code" Grid.Column="1" />
+                </Grid>
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="State: " />
+                    <TextBox x:Name="Gitee_State" Grid.Column="1" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Click="UnRegister_Button_Click">
+                    UnRegisterCustomURI
+                </Button>
+                <Button Grid.Row="1" Click="Register_Button_Click">
+                    RegisterCustomURI
+                </Button>
+            </Grid>
         </Grid>
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Pipes;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Waku.OAuth2.Samples;
@@ -31,19 +32,22 @@ public partial class App : Application
                 }
                 else
                 {
-                    MessageBox.Show("Instance is already running!", "application", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //MessageBox.Show("Instance is already running!", "application", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                     Utils.SetInstanceAsForegroundWindow("MainWindow");
-                    //TODO: use Thread.
-                    using (NamedPipeClientStream pipeClient = new(".", "testpipe", PipeDirection.Out))
+                    Task.Run(() =>
                     {
-                        pipeClient.Connect();
-                        using StreamWriter sw = new(pipeClient);
+                        using NamedPipeClientStream pipeClient = new(".", "testpipe", PipeDirection.Out);
                         {
-                            sw.AutoFlush = true;
-                            sw.WriteLine(Environment.GetCommandLineArgs()[1]);
+                            pipeClient.Connect();
+                            using StreamWriter sw = new(pipeClient);
+                            {
+                                sw.AutoFlush = true;
+                                sw.WriteLine(Environment.GetCommandLineArgs()[1]);
+                            }
                         }
-                    }
+                    });
+
                     Current.Shutdown();
                 }
             }

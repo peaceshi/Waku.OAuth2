@@ -1,51 +1,64 @@
 ﻿namespace Waku.OAuth2;
-
-using System;
-using System.Diagnostics;
-
-using Waku.OAuth2.Authorization;
-
-public sealed class Provider : IRequest, IResponse
+public sealed class Provider
 {
-    // TODO: string `Code` should be in ProviderResponse.
-    // TODO: ProviderRequest.
-    // TODO: ProviderResponse.
-    public Provider(string client_ID, string? redirect_URI, string? scope, string? state, string response_Type)
+    required public string Provider_Name { get; init; }
+
+    required public string Client_ID { get; init; }
+
+    public string? Provider_Type { get; init; }
+
+    public string? Redirect_URI { get; set; }
+
+    public string? Scope { get; set; }
+
+    public string? State { get; set; }
+
+    public string? Allow_Signup { get; set; }
+
+    public string? Response_Type { get; set; }
+
+    public void CreateProvider()
     {
-        Client_ID = client_ID;
-        Redirect_URI = redirect_URI;
-        Scope = scope;
-        State = state;
-        Response_Type = response_Type;
+        if (this.Provider_Name == Name.GitHub && this.Provider_Type is Type.Code or null)
+        {
+            this.Response_Type = Type.Code;
+            GitHub github = new()
+            {
+                Client_ID = this.Client_ID,
+                Response_Type = this.Response_Type,
+                Redirect_URI = this.Redirect_URI,
+                Scope = this.Scope,
+                State = this.State,
+                Allow_Signup = this.Allow_Signup,
+            };
+            github.GetAuthenticationCode();
+        }
+
+        if (this.Provider_Name == Name.Gitee && this.Provider_Type is Type.Code or null)
+        {
+            this.Response_Type = Type.Code;
+            Gitee gitee = new()
+            {
+                Client_ID = this.Client_ID,
+                Response_Type = this.Response_Type,
+                Redirect_URI = this.Redirect_URI,
+                Scope = this.Scope,
+                State = this.State,
+                Allow_Signup = this.Allow_Signup,
+            };
+            gitee.GetAuthenticationCode();
+        }
     }
 
-    public string Client_ID { get; init; }
-    public string? Redirect_URI { get; init; }
-    public string? Scope { get; init; }
-    public string? State { get; init; }
-    public string Response_Type { get; init; }
-    public string Code { get; init; }
-    public void GetAuthenticationCode()
+    public static class Name
     {
-        // TODO: use URLBuilder.
-        string targetURL = $"https://github.com/login/oauth/authorize?client_id={Client_ID}";
-        using Process browser = new();
-        {
-            try
-            {
-                browser.StartInfo.UseShellExecute = true;
-                browser.StartInfo.FileName = targetURL;
-                browser.Start();
-            }
-            catch (System.ComponentModel.Win32Exception noBrowser)
-            {
-                if (noBrowser.ErrorCode == -2147467259)
-                    Console.WriteLine(noBrowser.Message);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-        }
+        public const string GitHub = "github";
+        public const string Gitee = "gitee";
+    }
+
+    public static class Type
+    {
+        public const string Code = "code";
+        public const string Device = "device";
     }
 }
