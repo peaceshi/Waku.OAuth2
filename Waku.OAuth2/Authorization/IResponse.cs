@@ -3,7 +3,6 @@
  *
  * Client Authentication
  */
-
 /**
  * The authorization server MAY establish a client authentication method
    with public clients.  However, the authorization server MUST NOT rely
@@ -11,16 +10,15 @@
    client.
  * The client MUST NOT use more than one authentication method in each request.
  */
-
 namespace Waku.OAuth2.Authorization;
 
 /// <summary>
 /// <para>
-/// OAuth2 Authorization Response
+/// OAuth2 Authorization Response.
 /// </para>
-/// <see href="https://www.rfc-editor.org/rfc/rfc6749#section-4.1.2" />
+/// <see href="https://www.rfc-editor.org/rfc/rfc6749#section-4.1.2" />.
 /// </summary>
-public interface IResponse
+internal interface IResponse
 {
     /// <summary>
     /// REQUIRED.
@@ -29,11 +27,11 @@ public interface IResponse
     /// The authorization code MUST expire shortly after it is issued to mitigate the risk of leaks.<para />
     /// A maximum authorization code lifetime of 10 minutes is RECOMMENDED.<para />
     /// The client MUST NOT use the authorization code more than once.<para />
-    /// If an authorization code is used more than once, <para />
+    /// If an authorization code is used more than once,<para />
     /// the authorization server MUST deny the request and SHOULD revoke(when possible) all tokens previously issued based on that authorization code.
     /// </para>
     /// </summary>
-    public abstract string Code { get; init; }
+    abstract string Code { get; init; }
 
     /// <summary>
     /// RECOMMENDED.
@@ -42,5 +40,5 @@ public interface IResponse
     /// The exact value received from the client.
     /// </para>
     /// </summary>
-    public abstract string? State { get; init; }
+    abstract string? State { get; init; }
 }

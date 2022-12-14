@@ -1,1 +1,0 @@
-﻿namespace Waku.OAuth2;
